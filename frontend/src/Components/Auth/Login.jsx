@@ -1,24 +1,25 @@
 import React, { useState } from 'react'
 
-const Login = () => {
+const Login = ({handleLogin}) => {
 
+  // console.log(handleLogin);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('')
 
   const submitHandler = (e) => {
-    e.preventDefault()
-    console.log("email is ", email)
-    console.log("password is ", password)
 
+    e.preventDefault()
+    
+    handleLogin(email,password)
+    // console.log("email is ", email)
+    // console.log("password is ", password)
     setEmail('')
     setPassword('')  
-
- 
+    
   }
 
   return (
-    <div className='flex h-screen w-screen
-     items-center justify-center' >
+    <div className='flex h-screen w-screen items-center justify-center' >
       <div className='p-20 border-2 border-emerald-600' >
 
         <form
@@ -51,13 +52,11 @@ const Login = () => {
             placeholder="Enter Password" />
 
           <button
-            className='text-white border-none cursor-pointer bg-emerald-600  hover:bg-emerald-700 px-8 py-2 mt-7 font-semibold text-lg rounded-full placeholder:text-white'
+            className='text-white border-none cursor-pointer bg-emerald-600  hover:bg-emerald-700 px-6 py-2 mt-7 font-semibold text-lg rounded-full placeholder:text-white'
             type='submit'
           >Login</button>
         </form>
       </div>
-
-
     </div>
   )
 }
