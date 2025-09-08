@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import Login from "./Components/Auth/Login"
 import EmployeeDeshboard from './Components/Deshboard/EmployeeDeshboard'
 import AdminDeshboard from './Components/Deshboard/AdminDeshboard'
@@ -8,7 +8,20 @@ const App = () => {
 
   const [user, setUser] = useState(null)
   const [loggedInUserData, setLoggedInUserData] = useState(null)
-  const authData = useContext(AuthContext)
+  const [userData,setUserData] = useContext(AuthContext)
+
+  useEffect(()=>{
+    const loggedInUser = localStorage.getItem('loggedInUser')
+
+    if(loggedInUser){
+      // console.log("User loggedIn hai ")
+
+      const userData = JSON.parse(loggedInUser)
+      setUser(userData.role)
+      setLoggedInUserData(userData.data)
+      // console.log(userData)
+    }
+  },[])
 
   const handleLogin = (email, password) => {
     console.log(email, password)
@@ -17,16 +30,16 @@ const App = () => {
       setUser('admin')
       localStorage.setItem('loggedInUser', JSON.stringify({ role: 'admin' }))
     }
-    else if (authData && authData.employees) {
-       
-      const employee = authData.employees.find((e) => email === e.email && password === e.password)
+    else if (userData) {
+
+      const employee = userData.find((e) => email === e.email && password === e.password)
 
       if (employee) {
 
         setUser('employee')
         setLoggedInUserData(employee)
-        localStorage.setItem('loggedInUser', JSON.stringify({ role: 'employee' }))
-        
+        localStorage.setItem('loggedInUser', JSON.stringify({ role: 'employee', data:employee }))
+
       } else {
         alert("Invalid credentials")
       }
@@ -36,14 +49,14 @@ const App = () => {
   }
 
   return (
-    <>
+  <>
       {!user ? (
         <Login handleLogin={handleLogin} />
       ) : user === 'admin' ? (
-        <AdminDeshboard />
-      ) : (
-        <EmployeeDeshboard data={loggedInUserData} />
-      )}
+        <AdminDeshboard  changeUser = {setUser}/>
+      ) : user === 'employee' ? (
+        <EmployeeDeshboard changeUser = {setUser} data={loggedInUserData} />
+      ) : null}
     </>
   )
 }

@@ -5,6 +5,7 @@ import {setLocalStorage, getLocalStorage } from '../utils/localStrorage'
 export const AuthContext = createContext()
 
 const AuthProvider = ({ children }) => {
+    // localStorage.clear()
 
     const [userData, setUserData] = useState({ employees: [], admin: [] })
 
@@ -12,11 +13,11 @@ const AuthProvider = ({ children }) => {
         
         setLocalStorage()
         const { employees, admin } = getLocalStorage()
-        setUserData({ employees, admin })
+        setUserData(employees)
     }, [])
 
     return (
-        <AuthContext.Provider value={userData}>
+        <AuthContext.Provider value={[userData, setUserData]}>
             {children}
         </AuthContext.Provider>
     )

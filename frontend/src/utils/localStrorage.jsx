@@ -74,7 +74,7 @@ const employees = [
     "taskCounts": {
       "active": 1,
       "newTask": 1,
-      "completed": 1,
+      "completed": 2,
       "failed": 0
     }
   },
@@ -106,7 +106,7 @@ const employees = [
       }
     ],
     "taskCounts": {
-      "active": 1,
+      "active": 2,
       "newTask": 1,
       "completed": 1,
       "failed": 0
@@ -142,8 +142,8 @@ const employees = [
     "taskCounts": {
       "active": 1,
       "newTask": 1,
-      "completed": 1,
-      "failed": 0
+      "completed": 3,
+      "failed": 1
     }
   },
   {
@@ -176,8 +176,8 @@ const employees = [
     "taskCounts": {
       "active": 1,
       "newTask": 1,
-      "completed": 1,
-      "failed": 0
+      "completed": 0,
+      "failed": 1
     }
   }
 ]

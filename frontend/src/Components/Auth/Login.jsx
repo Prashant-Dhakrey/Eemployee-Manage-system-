@@ -52,7 +52,7 @@ const Login = ({handleLogin}) => {
             placeholder="Enter Password" />
 
           <button
-            className='text-white border-none cursor-pointer bg-emerald-600  hover:bg-emerald-700 px-6 py-2 mt-7 font-semibold text-lg rounded-full placeholder:text-white'
+            className='text-white border-none cursor-pointer bg-emerald-600  hover:bg-emerald-700 px-24 py-2 mt-7 font-semibold text-lg rounded-full placeholder:text-white'
             type='submit'
           >Login</button>
         </form>
